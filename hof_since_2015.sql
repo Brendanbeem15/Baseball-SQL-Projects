@@ -1,0 +1,1 @@
+SELECT P.nameFirst, P.nameLast, H.yearid FROM People P JOIN HallOfFame H  ON P.playerID = H.playerID WHERE  H.inducted = 'Y' AND H.yearid >= 2015 AND H.votedBy != 'BBWAA' GROUP BY P.playerID, P.nameFirst, P.nameLast   ORDER BY H.yearid DESC;
