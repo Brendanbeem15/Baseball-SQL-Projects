@@ -1,4 +1,32 @@
+/*
 
+Question:
+Who had the highest Slugging Percentage (SLG) among MLB hitters during the 2025 season who received 200 AB or more?
+
+Formula:
+SLG = Total Bases / AB
+
+Where:
+Total Bases =
+(1B) + (2 × 2B) + (3 × 3B) + (4 × HR)
+
+1B = H − 2B − 3B − HR
+
+Tables:
+People
+Batting
+
+Concepts:
+- JOIN
+- GROUP BY
+- SUM()
+- CAST() for decimal calculations
+- ROUND()
+- Derived statistics (Singles and Total Bases)
+- HAVING to require a minimum number of at-bats
+- Combines statistics for players who appeared with multiple teams
+
+*/
 
 SELECT b.yearid, p.nameFirst, p.nameLast, SUM(b.H) AS H, SUM(b."2B") AS Doubles,
 SUM(b."3B") AS Triples, SUM(b.HR) AS HomeRuns, SUM(b.AB) AS AB,
