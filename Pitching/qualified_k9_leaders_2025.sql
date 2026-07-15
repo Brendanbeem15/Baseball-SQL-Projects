@@ -1,0 +1,43 @@
+/*
+Question:
+Which qualified MLB pitchers had the highest K per 9 during the 2025 season?
+
+Qualification:
+Pitchers must have pitched at least 162.0 innings (486 outs), matching the standard MLB qualification of 1 inning pitched per team game.
+
+Formula:
+K9 = (SO*9) / IP
+
+Where:
+IP = IPouts / 3
+
+Tables:
+People
+Pitching
+
+Concepts:
+- JOIN
+- GROUP BY
+- SUM()
+- CAST() for decimal calculations
+- ROUND()
+- HAVING to require a minimum workload
+- Combines statistics for pitchers who appeared with multiple teams
+
+*/
+
+SELECT pt.yearid, p.nameFirst, p.nameLast,   (SUM(pt.IPouts) / 3) || '.' || (SUM(pt.IPouts) % 3) AS IP, SUM(pt.SO) AS K,
+ ROUND(
+    CAST(
+        (
+            SUM(pt.SO)*9
+        ) AS REAL
+    ) / (SUM(pt.IPouts) / 3.0),
+    1
+) AS K9
+FROM People p JOIN Pitching pt ON p.playerID = pt.playerID 
+WHERE pt.yearid = 2025 
+GROUP BY p.playerID, p.nameFirst, p.nameLast
+HAVING SUM(pt.IPouts) >= 486 
+ORDER BY K9 DESC
+LIMIT 10;
