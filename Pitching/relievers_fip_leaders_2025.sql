@@ -12,7 +12,7 @@ Notes:
 - Combines statistics across multiple teams.
 */
 
-SELECT p.nameFirst, p.nameLast, pt.yearid,
+SELECT pt.yearid, p.nameFirst, p.nameLast,  (SUM(pt.IPouts) / 3) || '.' || (SUM(pt.IPouts) % 3) AS IP,
 ROUND(
     CAST(
         (
