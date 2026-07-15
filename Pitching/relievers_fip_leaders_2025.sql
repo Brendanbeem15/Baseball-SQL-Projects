@@ -1,6 +1,6 @@
 /*
 Question:
-Which starters had the best Fielding Independent Pitching (FIP) in 2025?
+Which relievers had the best Fielding Independent Pitching (FIP) in 2025?
 
 Formula:
 FIP = ((13*HR)+(3*(BB+HBP))-(2*K))/IP + 3.135
